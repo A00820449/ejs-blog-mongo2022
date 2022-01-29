@@ -16,7 +16,8 @@ const Post = mongoose.model("Post", PostSchema);
 router.use(express.urlencoded({extended: true}));
 
 router.get('/', async function(req,res){
-  res.render('index');
+  const posts = await Post.find();
+  res.render('index', {posts});
 });
 
 
