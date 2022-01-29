@@ -11,7 +11,7 @@ const app = express();
 
 // connection to db
 mongoose.connect(process.env.MONGODB)
-    .then(db => console.log('db connected:', process.env.MONGODBd))
+    .then(db => console.log('db connected:', process.env.MONGODB))
     .catch(err => console.error(err));
 
 // importing routes

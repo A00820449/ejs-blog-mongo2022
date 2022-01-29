@@ -80,7 +80,24 @@ router.post("/edit/:id", async (req,res)=>{
 router.get("/delete/:id", async (req,res)=>{
   try {
     const post = await Post.findById(req.params.id);
-    res.json(post);
+    res.render("delete", {post});
+  }
+  catch(e) {
+    console.error(e);
+    res.sendStatus(400);
+  }
+});
+router.post("/delete/:id", async (req,res)=>{
+  try {
+    const id = req.params.id;
+
+    if (!id) {
+      throw new Error("No id");
+    }
+
+    await Post.findByIdAndDelete(id);
+
+    res.redirect("/");
   }
   catch(e) {
     console.error(e);
