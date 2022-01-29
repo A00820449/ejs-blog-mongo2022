@@ -36,7 +36,7 @@ router.post('/newPost', async (req,res) =>{
 
   const newPost = new Post({title, author, post_data});
   
-  newPost.save();
+  await newPost.save();
 
   return res.redirect("/");
 });
