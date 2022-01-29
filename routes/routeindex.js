@@ -22,9 +22,7 @@ router.get('/', async function(req,res){
 
 
 router.get('/newPost', async (req,res) =>{
-  const postData = req.body;
   res.render('newPost');
-  //res.send("Success");
 });
 
 router.post('/newPost', async (req,res) =>{
