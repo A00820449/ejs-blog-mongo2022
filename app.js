@@ -8,11 +8,11 @@ dotenv.config();
 
 const app = express();
 
-// connection to db
 
+// connection to db
 mongoose.connect(process.env.MONGODB)
-    .then(db => console.log('db connected'))
-    .catch(err => console.log(err));
+    .then(db => console.log('db connected:', process.env.MONGODBd))
+    .catch(err => console.error(err));
 
 // importing routes
 const indexRoutes = require('./routes/routeindex');
