@@ -9,14 +9,17 @@
 <main role="main" class="container">
   <div class="row">
     <div class="col-md-8 blog-main">
-      
+      <% if (posts.lenght < 1) { %> 
+      <div>No posts :(</div>
+      <% } %> 
+
       <% for(const post of posts) { %> 
       <div class="blog-post">
         <h2 class="blog-post-title"><%= post.title %></h2>
         <p class="blog-post-meta"><%= post.post_date %> by <a href="#"><%= post.author %></a></p>
         <p><%= post.post_data %></p>
-        <a class = "btn btn-danger" href =""> Delete </a>
-        <a class = "btn btn-info" href =""> Edit </a>
+        <a class = "btn btn-danger" href="/delete/<%= post._id %>"> Delete </a>
+        <a class = "btn btn-info" href="/edit/<%= post._id %>"> Edit </a>
       </div>
       <% } %> 
 

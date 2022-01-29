@@ -43,6 +43,49 @@ router.post('/newPost', async (req,res) =>{
   return res.redirect("/");
 });
 
+router.get("/edit/:id", async (req,res)=>{
+  try {
+    const post = await Post.findById(req.params.id);
+    res.render("edit", {post});
+  }
+  catch(e) {
+    console.error(e);
+    res.sendStatus(400);
+  }
+});
 
+router.post("/edit/:id", async (req,res)=>{
+  try {
+    const id = req.params.id || "";
+
+    const author = req.body.author.trim() || "";
+    const post_data = req.body.post_data.trim() || "";
+    const title = req.body.title.trim() || "";
+
+    if (author === "" || post_data === "" || title === "" || id === "") {
+      throw new Error("Empty fields");
+    }
+
+    await Post.findByIdAndUpdate(id, {author, post_data, title});
+
+    res.redirect("/");
+  }
+  catch(e) {
+    console.error(e);
+    res.sendStatus(400);
+  }
+});
+
+
+router.get("/delete/:id", async (req,res)=>{
+  try {
+    const post = await Post.findById(req.params.id);
+    res.json(post);
+  }
+  catch(e) {
+    console.error(e);
+    res.sendStatus(400);
+  }
+});
 
 module.exports = router;
